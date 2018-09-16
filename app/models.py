@@ -42,7 +42,7 @@ class User(UserMixin, db.Model):
     
 class Post(db.Model):
     '''
-    Pitch class represent the pitches Pitched by 
+    Post class represent the posts posted by 
     users.
     ''' 
 
@@ -56,7 +56,7 @@ class Post(db.Model):
     @classmethod
     def retrieve_posts(cls, id):
         posts = Post.filter_by(id=id).all()
-        return pitches
+        return posts
 
 
     def __repr__(self):
@@ -67,5 +67,5 @@ class Comments(db.Model):
     __tablename__ = 'comments'
     id = db.Column(db.Integer, primary_key=True)
     details = db.Column(db.String(255))
-    pitch_id = db.Column(db.Integer, db.ForeignKey('posts.id'))
+    post_id = db.Column(db.Integer, db.ForeignKey('posts.id'))
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
