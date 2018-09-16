@@ -9,11 +9,26 @@
     {% else %}
     <title> Welcome </title>
     {% endif %}
+    
 </head>
 
 <body>
     {% block content %}
-
+        <div class="container-fluid">
+            <h1>The Best Blog website Ever</h1>
+            <link rel="img" href="{{url_for('static',filename='images/coverphoto.jpg')}}">
+        </div>
+        <style>
+            h1{
+                font-size: 70px;
+                text-align: center; 
+                color: crimson;
+                font-family: 'Satisfy', cursive; 
+            }
+            h1:hover{
+                color: blueviolet;
+            }
+        </style>
     {% endblock%}
 
 </body>

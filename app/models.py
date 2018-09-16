@@ -40,4 +40,32 @@ class User(UserMixin, db.Model):
     def __repr__(self):
         return '{}'.format(self.username)
     
-   
+class Post(db.Model):
+    '''
+    Pitch class represent the pitches Pitched by 
+    users.
+    ''' 
+
+    __tablename__ = 'posts'
+    id = db.Column(db.Integer, primary_key=True)
+    body = db.Column(db.String(140))
+    category = db.Column(db.String(140))
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+
+    @classmethod
+    def retrieve_posts(cls, id):
+        posts = Post.filter_by(id=id).all()
+        return pitches
+
+
+    def __repr__(self):
+        return '{}'.format(self.body)
+
+
+class Comments(db.Model):
+    __tablename__ = 'comments'
+    id = db.Column(db.Integer, primary_key=True)
+    details = db.Column(db.String(255))
+    pitch_id = db.Column(db.Integer, db.ForeignKey('posts.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
