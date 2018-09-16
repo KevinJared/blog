@@ -9,26 +9,59 @@
     {% else %}
     <title> Welcome </title>
     {% endif %}
-    
+
 </head>
 
 <body>
     {% block content %}
+    <div class="navbar" style=" background-color: rgb(197, 115, 238);font-family: 'Maven Pro', sans-serif; font-size: 19px;height: 450px;;">
         <div class="container-fluid">
-            <h1>The Best Blog website Ever</h1>
-            <link rel="img" href="{{url_for('static',filename='images/coverphoto.jpg')}}">
+            <div class="navbar-header">
+                <div class="navbar-collapse collapse">
+                    <a class="navbar-brand" href="/"> <strong>BLOG</strong> </a>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="/">Home</a></li>
+                        {% if current_user.is_authenticated %}
+                        <li style="color:white;padding:15px;">{{current_user.username}}</li>
+                        <li><a href="{{url_for('auth.logout')}}">Sign out</a></li>
+                        {% else %}
+                        <li><a href="{{url_for('auth.login')}}">Sign in</a></li>
+                        {%endif%}
+                    </ul>
+                </div>
+            </div>
         </div>
-        <style>
-            h1{
-                font-size: 70px;
-                text-align: center; 
-                color: crimson;
-                font-family: 'Satisfy', cursive; 
-            }
-            h1:hover{
-                color: blueviolet;
-            }
-        </style>
+        <div class="container-fluid">
+                <h1>The Best Blog website Ever</h1>
+                <link rel="img" href="{{url_for('static',filename='images/coverphoto.jpg')}}">
+            </div>
+    </div>
+    
+    <style>
+        .navbar a {
+            color: aliceblue;
+            text-shadow: 50px;
+
+        }
+
+        a:hover {
+            color: brown;
+        }
+        h1 {
+            font-size: 70px;
+            text-align: center;
+            color: black;
+            font-family: 'Satisfy', cursive;
+        }
+
+        h1:hover {
+            color: rgb(245, 16, 92);
+        }
+    </style>
+
+    <div class="well" style="height:100px;">
+        music
+    </div>
     {% endblock%}
 
 </body>
