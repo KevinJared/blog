@@ -1,9 +1,9 @@
 from flask import render_template,request,redirect,url_for, abort
-from .forms import UpdateProfile
+from .forms import UpdateProfile, PostForm
 from . import main
-from ..models import User
+from ..models import Post, User
 from flask_login import login_required
-from .. import db 
+from .. import db ,photos
 from flask_login import login_required, current_user
 import markdown2  
 
@@ -15,8 +15,19 @@ def index():
     View root page function that returns the index page and its data.
     '''
 
-   
-    return render_template('index.html')
+    form = PostForm()
+    if form.validate_on_submit():
+       post = form.post.data
+       title = form.category.data
+
+       new_post = Post(body = post,title = title,user = current_user)
+
+       # save pitch
+       db.session.add(new_post)
+       db.session.commit()
+
+       return redirect(url_for('.index'))
+    return render_template('index.html',form=form)
 
     
 @main.route('/user/<uname>')
@@ -58,3 +69,19 @@ def update_pic(uname):
         user.profile_pic_path = path
         db.session.commit()
     return redirect(url_for('main.profile',uname=uname))    
+
+@main.route('/movie/review/new/<int:id>', methods = ['GET','POST'])
+@login_required
+def new_post(id):
+    form = ReviewForm()
+    post = get_post(id)
+    if form.validate_on_submit():
+        title = form.title.data
+        review = form.review.data
+
+        # Updated review instance
+        new_post = Post(post_id=post.id,post_title=title,post_review=review,user=current_user)
+
+        # save review method
+        new_post.save_review()
+        return redirect(url_for('.posts',id = post.id ))

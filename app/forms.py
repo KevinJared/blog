@@ -3,7 +3,7 @@ from wtforms import StringField,TextAreaField,SubmitField
 from wtforms.validators import Required
 
 class PostForm(FlaskForm):
-    category = SelectField('Category', choices=[('Technology','Technology'),('Pickuplines','Pickuplines'),('BusinessPitch','Business Pitch'),('Sales','Sales'),('Interview','Interview')])
+    title = TextAreaField(('Title'), validators=[Required()])
     post = TextAreaField(('Say something'), validators=[Required()])
     submit = SubmitField(('Submit'))
 

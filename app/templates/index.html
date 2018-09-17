@@ -1,4 +1,5 @@
 {% extends 'base.html'%}
+{% import "bootstrap/wtf.html" as wtf %}
 <!DOCTYPE html>
 <html>
 
@@ -14,10 +15,11 @@
 
 <body>
     {% block content %}
+
     <div id="navbar" class="container-fluid" style=" background-color: rgb(197, 115, 238);font-family: 'Maven Pro', sans-serif; font-size: 19px;height: 400px;;">
         <div class="container-fluid">
             <a class="navbar-brand" href="/"> <strong>BLOG</strong>spot</a>
-            <ul class="nav navbar-nav navbar-right">
+            <ul class=" d-flex flex-row nav navbar-nav navbar-right" style="float: left;">
                 <li><a href="/">Home</a></li>
                 {% if current_user.is_authenticated %}
                 <li style="color:white;padding:15px;">{{current_user.username}}</li>
@@ -25,7 +27,6 @@
                 {% else %}
                 <li><a href="{{url_for('auth.login')}}">Sign in <img src="/static/photos/logout.png" alt="" height="20px;"></a></li>
                 {%endif%}
-
             </ul>
 
         </div>
@@ -48,6 +49,10 @@
             color: brown;
         }
 
+        .container p {
+            font-size: 14px;
+        }
+
         h1 {
             font-size: 70px;
             text-align: center;
@@ -57,6 +62,10 @@
 
         h1:hover {
             color: rgb(101, 216, 182);
+        }
+
+        h2 {
+            font-family: 'Nunito', sans-serif;
         }
 
         .brightness {
@@ -72,15 +81,41 @@
             -webkit-transform: translate(-5px, -5px);
             transform: translate(-5px, -5px);
         }
-
-        .section a{
-            
-        }
     </style>
 
     <div id="section" class="container-fluid" style="margin-top: 0em;">
-        <button class="btn"><a href="/">CREATE BLOG</a></button>
+
     </div>
+    <div class="container">
+
+        <div class="well" style="padding-top: 5px; margin-top:10px; ">
+            <h4><strong>Create A blog</strong></h4><span></span>
+            {{ wtf.quick_form(form)}}
+
+        </div>
+
+        <div class="col-m">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Music</h2>
+
+                </div>
+                <div class="card-body">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+                        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+                        non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+                </div>
+                <div class="card-footer">
+                    <h2>Author:</h2>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
     {% endblock%}
 
 </body>

@@ -21,7 +21,8 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(120), index=True, unique=True)
     password_hash = db.Column(db.String(130))
     profile_pic_path = db.Column(db.String())
-    post = db.relationship('post', backref='user', lazy="dynamic")
+
+    post = db.relationship('Post', backref='user', lazy="dynamic")
     comments = db.relationship('Comments', backref='user', lazy="dynamic")
 
     pass_secure  = db.Column(db.String(255))
@@ -50,7 +51,9 @@ class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     body = db.Column(db.String(140))
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    
     comments = db.relationship('Comments', backref='user', lazy="dynamic")
 
     @classmethod
