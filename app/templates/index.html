@@ -19,7 +19,7 @@
             <a class="navbar-brand" href="/"> <strong>BLOG</strong>spot</a>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="/">Home</a></li>
-                <li> <a href="{{ wtf.quick_form(form)}}">CREATE BLOG</a> </li>
+                <li> <a href="/">CREATE BLOG</a> </li>
                 {% if current_user.is_authenticated %}
                 <li style="color:white;padding:15px;">{{current_user.username}}</li>
                 <li><a href="{{url_for('auth.logout')}}">Sign out</a></li>
