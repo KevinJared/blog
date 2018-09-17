@@ -49,4 +49,4 @@ After running these commands, you can run the website.
 #### Alternatively
 
 - Open browser (Google Chrome Recommended)
-- Visit the live [website](https://name of deployed app.herokuapp.com)
+- Visit the live [website](https://myblog18.herokuapp.com/)
