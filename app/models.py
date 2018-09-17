@@ -51,6 +51,7 @@ class Post(db.Model):
     body = db.Column(db.String(140))
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    comments = db.relationship('Comments', backref='user', lazy="dynamic")
 
     @classmethod
     def retrieve_posts(cls, id):

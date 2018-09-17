@@ -4,7 +4,7 @@ from app import create_app, db
 from app.models import User, Post, Comments
 
 # Creating app instance
-app = create_app('production')
+app = create_app('development')
 
 manager = Manager(app)
 manager.add_command('server',Server)

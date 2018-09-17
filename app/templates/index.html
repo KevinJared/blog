@@ -19,7 +19,6 @@
             <a class="navbar-brand" href="/"> <strong>BLOG</strong>spot</a>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="/">Home</a></li>
-                <li> <a href="/">CREATE BLOG</a> </li>
                 {% if current_user.is_authenticated %}
                 <li style="color:white;padding:15px;">{{current_user.username}}</li>
                 <li><a href="{{url_for('auth.logout')}}">Sign out</a></li>
@@ -73,10 +72,14 @@
             -webkit-transform: translate(-5px, -5px);
             transform: translate(-5px, -5px);
         }
+
+        .section a{
+            
+        }
     </style>
 
-    <div class="container-fluid" style="margin-top: 0em;">
-        music
+    <div id="section" class="container-fluid" style="margin-top: 0em;">
+        <button class="btn"><a href="/">CREATE BLOG</a></button>
     </div>
     {% endblock%}
 
