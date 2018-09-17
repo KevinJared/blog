@@ -27,7 +27,7 @@ A writer, I would like to update or delete blogs I have created.
 - Bootstrap (for styling)
 - Postgresql (the database)
 
-View the source code at [GitHub](https://github.com/Rreuben/name of the repo)
+View the source code at https://github.com/KevinJared/blog.git
 
 #### Installation/Setup
 
